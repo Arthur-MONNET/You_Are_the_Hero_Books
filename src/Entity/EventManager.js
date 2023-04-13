@@ -9,6 +9,8 @@ class EventManager {
     constructor(player, file) {
         this.player = player;
         this.file = file;
+        this.marquisLiving = true;
+        this.comteLiving = true;
         this.currentEvent = {}
     }
 
@@ -51,7 +53,9 @@ class EventManager {
         const choices = this.currentEvent.data.choices
         const question = this.currentEvent.data.question
         out.drawChoices(question, choices);
+        await this.file.addQuestion(question, choices);
         let choice = await input.askChoice(choices);
+        await this.file.addChoice(choice);
         this.pageManager.goTo(choice.redirect);
     }
 
@@ -65,29 +69,30 @@ class EventManager {
             abandon: !!data.abandon,
         }
 
-        const fight = new Fight(this.file, this.player, data.weapon, data.enemies, options);
-        fight.run().then(res => {
-            fight.writeTurns().then(() => {
-                switch (res) {
-                    case "player":
-                        this.pageManager.goTo(data.valid);
-                        break;
-                    case "enemies":
-                        this.pageManager.goTo(data.noValid);
-                        break;
-                    case "exceeded":
-                        this.pageManager.goTo(data.noTry || data.noValid);
-                        break;
-                    case "abandon":
-                        this.pageManager.goTo(data.abandon);
-                        break;
-                    default:
-                        out.error("Fight result not found : " + res);
-                }
+        const fight = new Fight(this.file, this.player, data.weapon, data.enemies, this, options);
+        fight.writeIntro().then(() => {
+            fight.run().then(res => {
+                fight.writeTurns().then(() => {
+                    switch (res) {
+                        case "player":
+                            this.pageManager.goTo(data.valid);
+                            break;
+                        case "enemies":
+                            this.pageManager.goTo(data.noValid);
+                            break;
+                        case "exceeded":
+                            this.pageManager.goTo(data.noTry || data.noValid);
+                            break;
+                        case "abandon":
+                            this.pageManager.goTo(data.abandon);
+                            break;
+                        default:
+                            out.error("Fight result not found : " + res);
+                    }
+                })
             })
-
-
         })
+        
     }
 
     end() {
@@ -95,28 +100,24 @@ class EventManager {
         else out.win()
     }
 
-    async point(){
+    async point() {
         const data = this.currentEvent.data
-        if(data.nbPoint === "init"){
+        if (data.nbPoint === "init") {
             this.player[data.quality].value = this.player[data.quality].max
         } else {
             this.player[data.quality].value += parseInt(data.nbPoint)
         }
-        
+
         let text = "";
         out.space()
-        if(data.nbPoint === "init"){
+        if (data.nbPoint === "init") {
             text += "Vous retrouvez " + this.player[data.quality].value + " sur votre qualité : " + this.player[data.quality].fr + " " + this.player[data.quality].icon
             out.log("blue", text)
-            await this.file.add("\n" + text + "\n")
-            this.pageManager.goTo(data.redirect)
-            return;
-        }
-        if(parseInt(data.nbPoint)<0){
-            text += "Vous perdez " + parseInt(data.nbPoint)*-1 + " sur votre qualité : " + this.player[data.quality].fr + " " + this.player[data.quality].icon
+        } else if (parseInt(data.nbPoint) < 0) {
+            text += "Vous perdez " + parseInt(data.nbPoint) * -1 + " sur votre qualité : " + this.player[data.quality].fr + " " + this.player[data.quality].icon
             out.log("red", text)
 
-        } else  {
+        } else {
             text += "Vous gagnez " + parseInt(data.nbPoint) + " sur votre qualité : " + this.player[data.quality].fr + " " + this.player[data.quality].icon
             out.log("green", text)
         }
@@ -132,7 +133,6 @@ class EventManager {
             this.file.add("\n" + textValid + "\n").then(() => {
                 this.pageManager.goTo(this.currentEvent.data.valid)
             })
-
         } else {
             out.logln("red", textNoValid)
             this.file.add(textNoValid + "\n").then(() => {
@@ -144,16 +144,16 @@ class EventManager {
 
     test() {
         const quality = this.currentEvent.data.category
-        if (["useGun", "compteLife", "marquisLife", "belongs_to_military"].includes(quality)) {
+        if (["useGun", "comteLife", "marquisLife", "belongs_to_military"].includes(quality)) {
             input.getSpecificKey("", "\nPressez ENTREE...  ↩️").then(res => {
                 if (quality === "useGun") {
                     this.makeTest(this.player.useGun === 0, "Vous avez déjà utilisé votre pistolet !", "Vous n'avez pas récement utilisé votre pistolet")
                 } else if (quality === "belongs_to_military") {
                     this.makeTest(this.player.belongs_to_military, "Vous appartenez à l'armée !", "Vous ne faites pas parti de l'armée.")
-                } else if (quality === "compteLife") {
-                    this.makeTest(compteLife === 0, "Le compte est mort...", "Le compte est vivant !");
-                } else if (quality === "marquisLife") {
-                    this.makeTest(marquisLife === 0, "Le marquis est mort...", "Le marquis est vivant !");
+                } else if (quality === "comteLiving") {
+                    this.makeTest(this.comteLiving, "Le comte est mort...", "Le comte est vivant !");
+                } else if (quality === "marquisLiving") {
+                    this.makeTest(this.marquisLiving, "Le marquis est mort...", "Le marquis est vivant !");
                 }
             });
         } else {

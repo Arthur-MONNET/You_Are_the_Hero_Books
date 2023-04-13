@@ -5,12 +5,13 @@ const out = require('../utils/output.js');
 
 
 class Fight {
-    constructor(file, player, weapon, enemies, options = {}) {
+    constructor(file, player, weapon, enemies, eventmanager, options = {}) {
         const { maxTurn, minPlayerEndurance, partner, partnerEnemies, abandon,
         } = options;
         this.file = file;
         this.player = player;
         this.player.weapon = this.player[weapon].value;
+        this.eventManager = eventmanager;
         this.partner = partner ? new Partner(partner.name, parseInt(partner[weapon]), parseInt(partner.endurance), null) : null;
         this.enemies = enemies.map(enemy => new Enemy(enemy.name, parseInt(enemy[weapon]), parseInt(enemy.endurance), player));
         this.partnerEnemies = partnerEnemies && partner ? partnerEnemies.map(enemy => new Enemy(enemy.name, parseInt(enemy[weapon]), parseInt(enemy.endurance), this.partner)) : null;
@@ -107,11 +108,13 @@ class Fight {
             const enemy = await input.askChoiceEnemy(this.enemies);
             this.player.targeted = enemy;
             this.saveAttack(this.player, await this.player.attack());
+            
             if (enemy.endurance <= 0) {
                 this.enemiesDeath.push(enemy);
                 this.enemies = this.enemies.filter(e => e.name !== enemy.name);
                 out.characterDeath(enemy);
             }
+            
             return this.enemies.length === 0;
         } catch (error) {
             throw error;
@@ -157,6 +160,8 @@ class Fight {
                 this.saveAttack(enemy, await enemy.attack());
                 if (this.partner.endurance <= 0) {
                     out.characterDeath(this.partner);
+                    if(this.partner.name === "comte") this.eventManager.comteLiving = false;
+                    else if(this.partner.name === "marquis") this.eventManager.marquisLiving = false;
                     return true;
                 }
             }
@@ -173,7 +178,8 @@ class Fight {
             this.turns[this.turn][enemy.name] = 0;
         }
         if (this.partner) {
-            this.turns[this.turn][this.partner.name] = 0;
+            if(this.partner.endurance <= 0) this.turns[this.turn][this.partner.name] = "☠️";
+            else this.turns[this.turn][this.partner.name] = 0;
             for (const enemy of this.partnerEnemies) {
                 this.turns[this.turn][enemy.name] = 0;
             }
@@ -187,31 +193,12 @@ class Fight {
         this.turns[this.turn][character.targeted.name] -= attack ? 1 : 0;
     }
 
+    async writeIntro() {
+        this.file.listFighters(this.enemies, this.player, this.partner, this.partnerEnemies);
+    }
+
     async writeTurns() {
-        let turnLine = "| Tour |";
-        let lineTable = "|--:|";
-        let charactersLine = {};
-
-        for (const character in this.turns[0]) {
-            charactersLine[character] = `| ${character} |`;
-        }
-
-        for (let i = 0; i < this.turns.length; i++) {
-            // Create the first and second line (turnLine, lineTable)
-            turnLine += ` ${i} |`;
-            lineTable += ":--:|";
-            // Create the line for each character
-            for (const character in this.turns[i]) {
-                charactersLine[character] += ` ${this.turns[i][character]} |`;
-            }
-        }
-
-        await this.file.add(turnLine + "\n")
-        await this.file.add(lineTable + "\n")
-
-        for (const character in charactersLine) {
-            await this.file.add(charactersLine[character] + "\n")
-        }
+        await this.file.turns(this.turns)
     }
 
 }

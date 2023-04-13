@@ -3100,7 +3100,7 @@
             {
                 "type": "test",
                 "data": {
-                    "category": "compteLife",
+                    "category": "comteLiving",
                     "valid": "p159",
                     "noValid": "p196.events[1]"
                 }
@@ -3108,7 +3108,7 @@
             {
                 "type": "test",
                 "data": {
-                    "category": "marquisLife",
+                    "category": "marquisLiving",
                     "valid": "p159",
                     "noValid": "p300"
                 }
@@ -3394,7 +3394,7 @@
                 "data": {
                     "quality": "dexterity",
                     "other": {
-                        "name": "compte de Vallière",
+                        "name": "comte de Vallière",
                         "dexterity": "7"
                     },
                     "valid": "p193",

@@ -20,5 +20,5 @@ const pageManager = new PageManager(book, recap, player, eventManager);
 setQualities(player).then((playerQualitiesTable) => {
     recap.add(playerQualitiesTable);
     player.endurance.value = 3;
-    pageManager.start("p206");
+    pageManager.start("p132");
 });
