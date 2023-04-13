@@ -1,5 +1,3 @@
-let g = 1
-
 const File = require("./src/Entity/File.js");
 const Player = require("./src/Entity/Player.js");
 const setQualities = require("./src/setQualities.js");
@@ -17,8 +15,16 @@ const pageManager = new PageManager(book, recap, player, eventManager);
 
 
 
+function getPageArg() {
+    const args = process.argv.slice(2);
+    const pageArg = args.find(arg => arg.includes('page='));
+    return pageArg ? "p" + pageArg.split('=')[1] : "p1";
+}
+
+
 setQualities(player).then((playerQualitiesTable) => {
     recap.add(playerQualitiesTable);
     player.endurance.value = 3;
-    pageManager.start("p132");
+    pageManager.start(getPageArg());
 });
+
