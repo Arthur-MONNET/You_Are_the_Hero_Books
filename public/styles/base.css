@@ -1,0 +1,63 @@
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background-image: var(--image-bg1);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+
+
+#app-container,
+#bg-app-container {
+    height: 100%;
+    aspect-ratio: 9/16;
+    position: absolute;
+}
+
+#bg-app-container {
+    z-index: -1;
+    background-color: var(--color-bg);
+}
+
+/* si le ratio est inferieur à 9/16, on met width à 100% et height auto */
+@media (max-aspect-ratio: 9/16) {
+
+    #app-container,
+    #bg-app-container {
+        width: 100%;
+        height: auto;
+    }
+}
+
+main {
+    height: calc(100% - 7rem);
+}
+
+#bottom-move {
+    /*background: radial-gradient(ellipse at 50% 100%, var(--color-bg-gradient), transparent 50%);*/
+    z-index: -1;
+}
+
+#left-move {
+    /*background: radial-gradient(ellipse at 0% 50%, var(--color-bg-gradient), transparent 50%);*/
+    z-index: -1;
+}
+
+#right-move {
+    /*background: radial-gradient(ellipse at 100% 50%, var(--color-bg-gradient), transparent 50%);*/
+    z-index: -1;
+}

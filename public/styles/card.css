@@ -1,0 +1,23 @@
+#card {
+    transform-style: preserve-3d;
+}
+
+#back {
+    backface-visibility: hidden;
+}
+
+#front {
+    backface-visibility: hidden;
+}
+
+.card-bg {
+    background-image: var(--image-bg2);
+    background-size: cover;
+    background-position: center center;
+    border: 3px solid var(--border-card);
+}
+
+.card-text {
+    background-color: var(--color-card);
+    color: var(--color-text);
+}

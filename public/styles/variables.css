@@ -1,0 +1,18 @@
+:root {
+    --header-color-bg: #17131f;
+    --color-bg: #182224;
+    --color-bg-gradient: #8c7a4dbb;
+    --color-text: #b0acb9;
+    --color-card: #3f3d3e;
+    --header-color-text: #8c7a4d;
+    --image-bg1: url("../assets/background2.jpg");
+    --image-bg2: url("../assets/back_card.jpg");
+    --border-card: #3f3d3e;
+    --pre-move-left-right-distance: 10%;
+    --pre-move-down-distance: 15%;
+    --pre-move-left-right-rotation: 5deg;
+    --end-move-left-right-distance: 120%;
+    --end-move-left-right-rotation: 50deg;
+    --end-move-left-right-translateY: 20%;
+    --end-move-down-distance: 130%;
+}

@@ -1,0 +1,336 @@
+.return-card-animation-back {
+    animation: return-back 0.5s ease-in-out;
+}
+
+.return-card-animation-front {
+    animation: return-front 0.5s ease-in-out;
+}
+
+.pre-move-down-front {
+    animation: pre-move-down 0.3s ease-in-out;
+}
+
+.pre-move-left-front {
+    animation: pre-move-left 0.3s ease-in-out;
+}
+
+.pre-move-right-front {
+    animation: pre-move-right 0.3s ease-in-out;
+}
+
+.pre-move-left-from-right-front {
+    animation: pre-move-left-from-right 0.3s ease-in-out;
+}
+
+.pre-move-left-from-down-front {
+    animation: pre-move-left-from-down 0.3s ease-in-out;
+}
+
+.pre-move-right-from-left-front {
+    animation: pre-move-right-from-left 0.3s ease-in-out;
+}
+
+.pre-move-right-from-down-front {
+    animation: pre-move-right-from-down 0.3s ease-in-out;
+}
+
+.pre-move-down-from-left-front {
+    animation: pre-move-down-from-left 0.3s ease-in-out;
+}
+
+.pre-move-down-from-right-front {
+    animation: pre-move-down-from-right 0.3s ease-in-out;
+}
+
+.end-move-left-front {
+    animation: end-move-left 0.3s ease-in-out;
+}
+
+.end-move-right-front {
+    animation: end-move-right 0.3s ease-in-out;
+}
+
+.end-move-down-front {
+    animation: end-move-down 0.3s ease-in-out;
+}
+
+.isLeft {
+    transform: translateX(calc(var(--pre-move-left-right-distance) * -1))
+        rotateZ(calc(var(--pre-move-left-right-rotation) * -1));
+}
+
+.isRight {
+    transform: translateX(var(--pre-move-left-right-distance)) rotateZ(var(--pre-move-left-right-rotation));
+}
+
+.isDown {
+    transform: translateY(var(--pre-move-down-distance));
+}
+
+.return-to-start-from-left-front {
+    animation: return-to-start-from-left 0.3s ease-in-out;
+}
+
+.return-to-start-from-right-front {
+    animation: return-to-start-from-right 0.3s ease-in-out;
+}
+
+.return-to-start-from-down-front {
+    animation: return-to-start-from-down 0.3s ease-in-out;
+}
+
+#circle-background-fight.fight-open-full-size {
+    animation: fight-open-full-size 0.5s ease-in-out;
+    height: 100%;
+    width: 100%;
+}
+
+.fight-open-full-size #sword1 {
+    animation: sword1-open 0.8s ease-in;
+}
+
+.fight-open-full-size #sword2 {
+    animation: sword2-open 0.8s ease-in;
+}
+
+@keyframes sword1-open {
+    0% {
+        transform: translateX(-150%) rotateZ(-90deg) scale(160%);
+        display: none;
+    }
+    19%{
+        display: none;
+    }
+
+    20% {
+        display: flex;
+        transform: translateX(-150%) rotateZ(-90deg) scale(160%);
+    }
+
+    100% {
+        transform: translateX(0%) rotateZ(0deg) scale(100%);
+    }
+}
+
+@keyframes sword2-open {
+    0% {
+        transform: translateX(150%) rotateZ(0deg) scale(160%);
+        display: none;
+    }
+    19%{
+        display: none;
+    }
+    20% {
+        display: flex;
+        transform: translateX(150%) rotateZ(0deg) scale(160%);
+    }
+
+    100% {
+        transform: translateX(0%) rotateZ(-90deg) scale(100%);
+    }
+}
+
+@keyframes fight-open-full-size {
+    0% {
+        height:0;
+        width:0;
+        border-radius: 30%;
+    }
+
+    70% {
+        border-radius: 30%;
+    }
+
+    100% {
+        height:100%;
+        width:100%;
+        border-radius: 0;
+    }
+}
+
+@keyframes pre-move-down {
+    from {
+        transform: translateY(0%);
+    }
+
+    to {
+        transform: translateY(var(--pre-move-down-distance));
+    }
+}
+
+@keyframes end-move-down {
+    from {
+        transform: translateY(var(--pre-move-down-distance));
+    }
+
+    to {
+        transform: translateY(var(--end-move-down-distance));
+    }
+}
+
+@keyframes pre-move-left {
+    from {
+        transform: translateX(0%) rotateZ(0deg);
+    }
+
+    to {
+        transform: translateX(calc(var(--pre-move-left-right-distance) * -1))
+            rotateZ(calc(var(--pre-move-left-right-rotation) * -1));
+    }
+}
+
+@keyframes pre-move-right {
+    from {
+        transform: translateX(0%) rotateZ(0deg);
+    }
+
+    to {
+        transform: translateX(var(--pre-move-left-right-distance)) rotateZ(var(--pre-move-left-right-rotation));
+    }
+}
+
+@keyframes pre-move-left-from-right {
+    from {
+        transform: translateX(var(--pre-move-left-right-distance)) rotateZ(var(--pre-move-left-right-rotation));
+    }
+
+    to {
+        transform: translateX(calc(var(--pre-move-left-right-distance) * -1))
+            rotateZ(calc(var(--pre-move-left-right-rotation) * -1));
+    }
+}
+
+@keyframes pre-move-left-from-down {
+    from {
+        transform: translateY(var(--pre-move-down-distance));
+    }
+
+    to {
+        transform: translateX(calc(var(--pre-move-left-right-distance) * -1))
+            rotateZ(calc(var(--pre-move-left-right-rotation) * -1));
+    }
+}
+
+@keyframes pre-move-right-from-left {
+    from {
+        transform: translateX(calc(var(--pre-move-left-right-distance) * -1))
+            rotateZ(calc(var(--pre-move-left-right-rotation) * -1));
+    }
+
+    to {
+        transform: translateX(var(--pre-move-left-right-distance)) rotateZ(var(--pre-move-left-right-rotation));
+    }
+}
+
+@keyframes pre-move-right-from-down {
+    from {
+        transform: translateY(var(--pre-move-down-distance));
+    }
+
+    to {
+        transform: translateX(var(--pre-move-left-right-distance)) rotateZ(var(--pre-move-left-right-rotation));
+    }
+}
+
+@keyframes pre-move-down-from-left {
+    from {
+        transform: translateX(calc(var(--pre-move-left-right-distance) * -1))
+            rotateZ(calc(var(--pre-move-left-right-rotation) * -1));
+    }
+
+    to {
+        transform: translateY(var(--pre-move-down-distance));
+    }
+}
+
+@keyframes pre-move-down-from-right {
+    from {
+        transform: translateX(var(--pre-move-left-right-distance)) rotateZ(var(--pre-move-left-right-rotation));
+    }
+
+    to {
+        transform: translateY(var(--pre-move-down-distance));
+    }
+}
+
+@keyframes end-move-left {
+    from {
+        transform: translateX(calc(var(--pre-move-left-right-distance) * -1))
+            rotateZ(calc(var(--pre-move-left-right-rotation) * -1));
+    }
+
+    to {
+        transform: translateX(calc(var(--end-move-left-right-distance) * -1))
+            rotateZ(calc(var(--end-move-left-right-rotation) * -1)) translateY(var(--end-move-left-right-translateY));
+    }
+}
+
+@keyframes end-move-right {
+    from {
+        transform: translateX(var(--pre-move-left-right-distance)) rotateZ(var(--pre-move-left-right-rotation));
+    }
+
+    to {
+        transform: translateX(var(--end-move-left-right-distance)) rotateZ(var(--end-move-left-right-rotation))
+            translateY(var(--end-move-left-right-translateY));
+    }
+}
+
+@keyframes return-to-start-from-left {
+    from {
+        transform: translateX(calc(var(--pre-move-left-right-distance) * -1))
+            rotateZ(calc(var(--pre-move-left-right-rotation) * -1));
+    }
+
+    to {
+        transform: translateX(0%) rotateZ(0deg);
+    }
+}
+
+@keyframes return-to-start-from-right {
+    from {
+        transform: translateX(var(--pre-move-left-right-distance)) rotateZ(var(--pre-move-left-right-rotation));
+    }
+
+    to {
+        transform: translateX(0%) rotateZ(0deg);
+    }
+}
+
+@keyframes return-to-start-from-down {
+    from {
+        transform: translateY(var(--pre-move-down-distance));
+    }
+
+    to {
+        transform: translateX(0%) rotateZ(0deg);
+    }
+}
+
+@keyframes return-front {
+    0% {
+        transform: rotateY(180deg) translateY(0%) scaleY(1);
+    }
+
+    40% {
+        transform: rotateY(90deg) translateX(20%) scaleY(1.1);
+    }
+
+    100% {
+        transform: rotateY(0deg) translateX(0%) scaleY(1);
+    }
+}
+
+@keyframes return-back {
+    0% {
+        transform: rotateY(0deg) translateY(0%) scaleY(1);
+    }
+
+    40% {
+        transform: rotateY(90deg) translateX(20%) scaleY(1.1);
+    }
+
+    100% {
+        transform: rotateY(180deg) translateX(0%) scaleY(1);
+    }
+}

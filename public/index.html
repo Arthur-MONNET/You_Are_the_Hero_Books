@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon livre dont on est le héros</title>
+    <!-- Import de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- site icon -->
+    <link rel="icon" href="./assets/favicon.ico" type="image/x-icon">
+    <!-- Styles personnalisés -->
+    <link rel="stylesheet" href="./styles/all-styles.css">
+</head>
+
+<body>
+    <div id="bg-app-container">
+    </div>
+    <div id="app-container">
+        <nav class="shadow-lg h-28">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col justify-between items-center py-4">
+                    <div class="w-full">
+                        <div class="w-full bg-gray-200 rounded-full overflow-hidden h-4">
+                            <div class="w-full bg-pink-500 rounded-full h-4"></div>
+                        </div>
+                    </div>
+                    <div class="w-full flex justify-center mt-4 gap-7">
+                        <div class="flex flex-col items-center">
+                            <div class="text-md" title="agilité">🏃</div>
+                            <div class="text-sm">0</div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="text-md" title="chance">🍀</div>
+                            <div class="text-sm">0</div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="text-md" title="force">💪</div>
+                            <div class="text-sm">0</div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="text-md" title="diplomatie">🤝</div>
+                            <div class="text-sm">0</div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="text-md" title="adresse">🤸</div>
+                            <div class="text-sm">0</div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="text-md" title="habileté">🤹</div>
+                            <div class="text-sm">0</div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="text-md" title="équitation">🏇</div>
+                            <div class="text-sm">0</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <main class="container mx-auto absolute">
+            <div class="rounded-lg absolute mx-8 mt-12 mb-24 bg-cover bg-center card-bg brightness-75"
+                style="height:calc(100% - 9rem);width:calc(100% - 4rem);"></div>
+            <div id="card" class="mx-8 mt-12 mb-24" style="height:calc(100% - 9rem);width:calc(100% - 4rem);">
+                <div id="back" class="shadow-lg rounded-lg absolute bg-cover bg-center card-bg w-full h-full"></div>
+                <div id="front"
+                    class="shadow-lg rounded-lg absolute card-text overflow-hidden flex flex-col justify-center items-center w-full h-full">
+                    <div class="px-4 py-2">
+                        <p class="leading-normal text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Sed vel urna velit. Vivamus tempor faucibus elit, a suscipit elit porta sit amet. Sed vel
+                            urna velit.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <div id="bottom-move" class="flex items-center flex-col py-2 pt-12 bottom-0 absolute w-full">
+            <p class="text-[#b0acb9] font-bold">Suivant</p>
+            <svg class="h-6 w-6 mt-2 text-[#b0acb9]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3">
+                </path>
+            </svg>
+        </div>
+        <div id="left-move" class="flex justify-center flex-col px-1 pr-4 bottom-0 left-0 absolute h-full">
+            <svg class="h-6 w-6 mr-2 text-[#b0acb9]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+        </div>
+        <div id="right-move" class="flex justify-center flex-col px-1 pl-4 bottom-0 right-0 absolute h-full">
+            <svg class="h-6 w-6 ml-2 text-[#b0acb9]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+        </div>
+    </div>
+    <div id="fight-container" class="absolute w-full h-full flex items-center justify-center" style="z-index: 10;">
+        <div id="circle-background-fight" class="overflow-hidden absolute flex items-center justify-center fight-open-full-size">
+            <svg class="h-full w-full absolute" xmlns="http://www.w3.org/2000/svg">
+                    <line id="fight-lign-top" x1="50%" y1="40%" x2="50%" y2="40%" stroke="black">
+                        <animate attributeName="x1" from="50%" to="0%" dur="0.3s" begin="0.9s" fill="freeze" />
+                        <animate attributeName="y1" from="40%" to="0%" dur="0.3s" begin="0.9s" fill="freeze" />
+                    </line>
+                    <line id="fight-lign-center" x1="50%" y1="50%" x2="50%" y2="50%" stroke="black">
+                        <animate attributeName="y1" from="50%" to="40%" dur="0.1s" begin="0.8s" fill="freeze" />
+                        <animate attributeName="y2" from="50%" to="60%" dur="0.1s" begin="0.8s" fill="freeze" />
+                    </line>
+                    <line id="fight-lign-bottom" x1="50%" y1="60%" x2="50%" y2="60%" stroke="black">
+                        <animate attributeName="x2" from="50%" to="100%" dur="0.3s" begin="0.9s" fill="freeze" />
+                        <animate attributeName="y2" from="60%" to="100%" dur="0.3s" begin="0.9s" fill="freeze" />
+                </svg>
+            <div class="absolute w-96 h-96 flex items-center justify-center">
+                <img id="sword1" src="./assets/sword.svg" class="w-1/2 absolute mr-[5%]" />
+                <img id="sword2" class="w-1/2 rotate-[-90deg] absolute ml-[5%]" src="./assets/sword.svg" />
+            </div>
+        </div>
+
+
+    </div>
+    <script src="./functions/swipe.js"></script>
+</body>
+
+</html>
