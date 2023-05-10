@@ -92,8 +92,8 @@
             </svg>
         </div>
     </div>
-    <div id="fight-container" class="absolute w-full h-full flex items-center justify-center" style="z-index: 10;">
-        <div id="circle-background-fight" class="overflow-hidden absolute flex items-center justify-center fight-open-full-size">
+    <div id="fight-container" class="absolute flex items-center justify-center" style="z-index: 10;">
+        <div id="circle-background-fight" class="overflow-hidden absolute flex items-center justify-center">
             <svg class="h-full w-full absolute" xmlns="http://www.w3.org/2000/svg">
                     <line id="fight-lign-top" x1="50%" y1="40%" x2="50%" y2="40%" stroke="black">
                         <animate attributeName="x1" from="50%" to="0%" dur="0.3s" begin="0.9s" fill="freeze" />
@@ -106,6 +106,7 @@
                     <line id="fight-lign-bottom" x1="50%" y1="60%" x2="50%" y2="60%" stroke="black">
                         <animate attributeName="x2" from="50%" to="100%" dur="0.3s" begin="0.9s" fill="freeze" />
                         <animate attributeName="y2" from="60%" to="100%" dur="0.3s" begin="0.9s" fill="freeze" />
+                    </line>
                 </svg>
             <div class="absolute w-96 h-96 flex items-center justify-center">
                 <img id="sword1" src="./public/assets/sword.svg" class="w-1/2 absolute mr-[5%]" />
